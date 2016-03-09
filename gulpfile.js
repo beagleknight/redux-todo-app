@@ -12,7 +12,9 @@ gulp.task('clean', function () {
 
 gulp.task('libs', function () {
     gulp.src([
-          './node_modules/expect/umd/expect.js'
+          './node_modules/systemjs/dist/system.js',
+          './node_modules/expect/umd/expect.js',
+          './node_modules/redux/dist/redux.js'
         ])
         .pipe($.plumber())
         .pipe($.concat('libs.js'))

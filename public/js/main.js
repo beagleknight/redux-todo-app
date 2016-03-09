@@ -14,16 +14,19 @@ var counter = function counter() {
   }
 };
 
-expect(counter(0, { type: 'INCREMENT' })).toEqual(1);
+var _Redux = Redux;
+var createStore = _Redux.createStore;
 
-expect(counter(1, { type: 'INCREMENT' })).toEqual(2);
+var store = createStore(counter);
 
-expect(counter(2, { type: 'DECREMENT' })).toEqual(1);
+var render = function render() {
+  document.body.innerText = store.getState();
+};
 
-expect(counter(1, { type: 'DECREMENT' })).toEqual(0);
+store.subscribe(render);
 
-expect(counter(1, { type: 'SOMETHING ELSE' })).toEqual(1);
+document.addEventListener('click', function () {
+  store.dispatch({ type: 'INCREMENT' });
+});
 
-expect(counter(undefined, {})).toEqual(0);
-
-console.log('Tests passed');
+render();
