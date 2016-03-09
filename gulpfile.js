@@ -16,6 +16,7 @@ gulp.task('libs', function () {
           './node_modules/expect/umd/expect.js',
           './node_modules/redux/dist/redux.js',
           './node_modules/react/dist/react.js',
+          './node_modules/react-redux/dist/react-redux.js',
           './node_modules/react-dom/dist/react-dom.js'
         ])
         .pipe($.plumber())
