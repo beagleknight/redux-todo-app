@@ -14,7 +14,9 @@ gulp.task('libs', function () {
     gulp.src([
           './node_modules/systemjs/dist/system.js',
           './node_modules/expect/umd/expect.js',
-          './node_modules/redux/dist/redux.js'
+          './node_modules/redux/dist/redux.js',
+          './node_modules/react/dist/react.js',
+          './node_modules/react-dom/dist/react-dom.js'
         ])
         .pipe($.plumber())
         .pipe($.concat('libs.js'))
@@ -30,7 +32,8 @@ gulp.task('scripts', function () {
             }
         }))
         .pipe($.babel({
-            presets: ["es2015"]
+            presets: ["react", "es2015"],
+            plugins: ["transform-object-rest-spread"]
         }))
         .pipe($.if(isProduction, $.stripDebug()))
         .pipe($.if(isProduction, $.uglify()))
